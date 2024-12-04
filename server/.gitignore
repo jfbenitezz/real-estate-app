@@ -1,0 +1,7 @@
+node_modules
+.env
+image.html
+Misc/admin.js
+Misc/fake.js
+nodemon.json
+config/Atlas.js

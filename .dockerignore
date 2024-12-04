@@ -1,0 +1,19 @@
+# Exclude node_modules from being copied into the Docker image
+node_modules
+
+# Exclude build directories (if you have any other build files)
+build
+
+# Exclude the Dockerfile itself (optional)
+Dockerfile
+
+# Exclude log files or temporary files
+*.log
+*.tmp
+
+# Exclude version control directories
+.git
+.gitignore
+
+# Exclude any other unnecessary files
+*.md
