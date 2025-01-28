@@ -1,5 +1,5 @@
 const User = require('./userModel');
-const Rental = require('../../models/rentalModel');
+const Rental = require('../../rentals/v1/rentalModel');
 
 const deleteUser = async (req, res) => {
   try {
