@@ -1,6 +1,6 @@
-const Property = require('../propertyModel');
-const {convertCurrency} = require('../../../Misc/currency');
-const {getExchangeRateCache} = require('../../../Misc/rateCache');
+const Property = require('./propertyModel');
+const {convertCurrency} = require('../../Misc/currency');
+const {getExchangeRateCache} = require('../../Misc/rateCache');
 
 const readProperty = async (req, res) => {
     try {

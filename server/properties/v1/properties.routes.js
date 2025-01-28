@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const {createProperty} = require('./controllers/create.property.js');
-const {readProperty} = require('./controllers/read.property.js');
-const {updateProperty} = require('./controllers/update.property.js');
-const {deleteProperty} = require('./controllers/delete.property.js');
+const {createProperty} = require('./create.property.action.js');
+const {readProperty} = require('./read.property.action.js');
+const {updateProperty} = require('./update.property.action.js');
+const {deleteProperty} = require('./delete.property.action.js');
 
 const auth = require('../../middleware/authToken.js');
 
