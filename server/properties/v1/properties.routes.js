@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const controllers = require('../controllers/propertiesController');
-const auth = require('../middleware/authToken.js');
+const controllers = require('./propertiesController.js');
+const auth = require('../../middleware/authToken.js');
 
 router.post('/', auth.verifyToken, controllers.createProperty);
 router.get('/:id', controllers.readProperty);

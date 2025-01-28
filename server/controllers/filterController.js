@@ -1,4 +1,4 @@
-const Property = require('../models/propertyModel');
+const Property = require('../properties/v1/propertyModel');
 const getFilterOptions = async (req, res) => {
     const { field } = req.params;
     if (!field || typeof field !== 'string' || field.trim() === '') {

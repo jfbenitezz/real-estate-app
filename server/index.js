@@ -40,7 +40,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 const usersRoute = require("./routes/users")
-const propertiesRoute = require("./routes/properties")
+const propertiesRoute = require("./properties/v1/properties.routes")
 const rentalsRoute = require("./routes/rentals")
 const purchaseRoute = require("./routes/purchase")
 const catalogRoute = require("./routes/catalog")

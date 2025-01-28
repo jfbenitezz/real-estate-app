@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const Property = require('../models/propertyModel');
+const Property = require('../properties/v1/propertyModel');
 const Rental = require('../models/rentalModel');
 
 const createRental = async (req, res) => {

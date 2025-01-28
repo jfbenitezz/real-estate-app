@@ -1,7 +1,7 @@
-const Property = require('../models/propertyModel');
-const Rental = require('../models/rentalModel');
-const {convertCurrency} = require('../Misc/currency');
-const {getExchangeRateCache} = require('../Misc/rateCache');
+const Property = require('./propertyModel');
+const Rental = require('../../models/rentalModel');
+const {convertCurrency} = require('../../Misc/currency');
+const {getExchangeRateCache} = require('../../Misc/rateCache');
 
 const createProperty = async (req, res) => {
   try {
