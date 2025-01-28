@@ -44,7 +44,7 @@ const authRoute = require("./auth/v1/auth.routes")
 const propertiesRoute = require("./properties/v1/properties.routes")
 const catalogRoute = require("./properties/v1/catalog.routes")
 const rentalsRoute = require("./rentals/v1/rental.routes")
-const purchaseRoute = require("./routes/purchase")
+const purchaseRoute = require("./purchases/v1/purchase.routes")
 const imageRoute = require("./routes/images")
 const healthRoute = require("./routes/health")
 
