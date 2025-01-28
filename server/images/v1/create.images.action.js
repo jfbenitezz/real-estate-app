@@ -4,7 +4,7 @@ const sharp = require('sharp');
 
 const Image = require('./imageModel');
 
-const {s3} = require('../../middleware/bucket');
+const {s3} = require('../../config/bucket');
 const {PutObjectCommand, DeleteObjectCommand} = require("@aws-sdk/client-s3");
 
 const createImages = async (req, res) => {

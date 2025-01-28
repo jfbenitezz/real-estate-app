@@ -1,4 +1,4 @@
-const {s3} = require('../../middleware/bucket');
+const {s3} = require('../../config/bucket');
 const {DeleteObjectCommand} = require("@aws-sdk/client-s3");
 
 
