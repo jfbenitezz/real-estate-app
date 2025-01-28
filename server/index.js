@@ -39,12 +39,11 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const usersRoute = require("./routes/users")
+const usersRoute = require("./users/v1/users")
 const propertiesRoute = require("./properties/v1/properties.routes")
 const catalogRoute = require("./properties/v1/catalog.routes")
 const rentalsRoute = require("./routes/rentals")
 const purchaseRoute = require("./routes/purchase")
-const filterRoute = require("./routes/filter")
 const imageRoute = require("./routes/images")
 const authRoute = require("./auth/v1/auth.routes")
 const healthRoute = require("./routes/health")
@@ -54,7 +53,6 @@ app.use("/properties", propertiesRoute)
 app.use("/users", usersRoute)
 app.use("/rentals", rentalsRoute)
 app.use("/catalog", catalogRoute)
-app.use("/filter", filterRoute)
 app.use("/images", imageRoute)
 app.use("/auth", authRoute)
 app.use("/purchase", purchaseRoute)

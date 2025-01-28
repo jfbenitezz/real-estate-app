@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const User = require('./userModel');
+const User = require('../users/v1/userModel');
 const Property = require('../properties/v1/propertyModel');
 
 const rentalSchema = new mongoose.Schema({

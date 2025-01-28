@@ -1,6 +1,6 @@
-const User = require('../models/userModel');
-const Rental = require('../models/rentalModel');
-const {validateUser} = require('../middleware/validator');
+const User = require('./userModel');
+const Rental = require('../../models/rentalModel');
+const {validateUser} = require('../../middleware/validator');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
