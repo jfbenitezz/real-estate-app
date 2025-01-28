@@ -46,7 +46,7 @@ const purchaseRoute = require("./routes/purchase")
 const catalogRoute = require("./routes/catalog")
 const filterRoute = require("./routes/filter")
 const imageRoute = require("./routes/images")
-const authRoute = require("./routes/auth")
+const authRoute = require("./auth/v1/auth.routes")
 const healthRoute = require("./routes/health")
 
 
