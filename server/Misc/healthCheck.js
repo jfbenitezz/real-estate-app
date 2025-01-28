@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send('Service OK');
+    res.send('Service Of api is OK');
 });
 
 module.exports = router;

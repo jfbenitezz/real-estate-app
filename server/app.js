@@ -45,8 +45,8 @@ const propertiesRoute = require("./properties/v1/properties.routes")
 const catalogRoute = require("./properties/v1/catalog.routes")
 const rentalsRoute = require("./rentals/v1/rental.routes")
 const purchaseRoute = require("./purchases/v1/purchase.routes")
-const imageRoute = require("./routes/images")
-const healthRoute = require("./routes/health")
+const imageRoute = require("./images/v1/images.routes")
+const healthRoute = require("./Misc/healthCheck")
 
 
 app.use("/properties", propertiesRoute)
@@ -76,7 +76,7 @@ const cron = require('node-cron');
 
 // Initalize cacheRates once at startup
 console.log("Setting new cache...");
-//prefetchExchangeRates(exchange) //Ponlo de vuelta
+//prefetchExchangeRates(exchange)                       //**************************Ponlo de vuelta*************
 
 cron.schedule('0 0 * * *', async () => {
   console.log('Fetching and storing exchange rates...');
