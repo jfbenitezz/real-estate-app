@@ -1,5 +1,5 @@
-const Property = require('../properties/v1/propertyModel');
-const { getFilterOptions } = require('../controllers/filterController');
+const Property = require('./propertyModel');
+const { getFilterOptions } = require('./read.filters.action');
 const  getCatalog = async (req, res) => {
     let { page, pageSize, search, sortField, sortOrder, filter } = req.query;
   
@@ -51,7 +51,5 @@ const  getCatalog = async (req, res) => {
     }
   };
   
-  module.exports = {
-    getCatalog
-  };
+module.exports = { getCatalog };
 

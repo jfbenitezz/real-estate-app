@@ -11,6 +11,5 @@ router.post('/', auth.verifyToken,createProperty);
 router.get('/:id',readProperty);
 router.put('/:id', auth.verifyToken,updateProperty); 
 router.delete('/:id', auth.verifyToken,deleteProperty);
-console.log('Properties route loaded');
 module.exports = router;
 
