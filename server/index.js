@@ -47,6 +47,7 @@ const catalogRoute = require("./routes/catalog")
 const filterRoute = require("./routes/filter")
 const imageRoute = require("./routes/images")
 const authRoute = require("./routes/auth")
+const healthRoute = require("./routes/health")
 
 
 app.use("/properties", propertiesRoute)
@@ -57,6 +58,7 @@ app.use("/filter", filterRoute)
 app.use("/images", imageRoute)
 app.use("/auth", authRoute)
 app.use("/purchase", purchaseRoute)
+app.use("/health", healthRoute)
 
 env = process.env.NODE_ENV || 'development';
 app.use((err, req, res, next) => {

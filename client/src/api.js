@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const api = axios.create({
-  baseURL: 'http://server:5000', // Asegúrate de que esta URL sea correcta
+  baseURL: 'http://localhost:5000', // Asegúrate de que esta URL sea correcta
   withCredentials: true, // Para permitir que las cookies se envíen en las solicitudes CORS
 });
 
