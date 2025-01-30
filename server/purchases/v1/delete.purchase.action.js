@@ -1,5 +1,5 @@
-const Property = require('../../properties/v1/propertyModel');
-const Purchase = require('./purchaseModel');
+const Property = require('../../properties/v1/property.model');
+const Purchase = require('./purchase.model');
   
   const deletePurchase = async (req, res) => {
     try {

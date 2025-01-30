@@ -1,5 +1,5 @@
-const Property = require('../../properties/v1/propertyModel');
-const Rental = require('./rentalModel');
+const Property = require('../../properties/v1/property.model');
+const Rental = require('./rental.model');
 
 
 

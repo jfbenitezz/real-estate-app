@@ -1,6 +1,6 @@
-const User = require('../../users/v1/userModel');
-const Property = require('../../properties/v1/propertyModel');
-const Purchase = require('./purchaseModel');
+const User = require('../../users/v1/user.model');
+const Property = require('../../properties/v1/property.model');
+const Purchase = require('./purchase.model');
 
 const createPurchase = async (req, res) => {
     try {

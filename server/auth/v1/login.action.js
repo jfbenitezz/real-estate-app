@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User = require('../../users/v1/userModel');
+const User = require('../../users/v1/user.model');
 const { validateLogin } = require('../../middleware/validator');
 const { generateAccessToken, generateRefreshToken } = require('./createTokens.action');
 

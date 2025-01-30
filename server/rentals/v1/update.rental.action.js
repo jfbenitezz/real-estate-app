@@ -1,4 +1,4 @@
-const Rental = require('./rentalModel');
+const Rental = require('./rental.model');
 
 
   const updateRental = async (req, res) => {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('../../users/v1/userModel');
-const Property = require('../../properties/v1/propertyModel');
+const User = require('../../users/v1/user.model');
+const Property = require('../../properties/v1/property.model');
 
 const rentalSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },

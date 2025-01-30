@@ -1,6 +1,6 @@
 
 
-const Image = require('./imageModel');
+const Image = require('./image.model');
 
 const getImages = async (req, res) => {
     try {

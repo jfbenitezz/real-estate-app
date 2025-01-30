@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('node:path');
 const sharp = require('sharp');
 
-const Image = require('./imageModel');
+const Image = require('./image.model');
 
 const {s3} = require('../../config/bucket');
 const {PutObjectCommand, DeleteObjectCommand} = require("@aws-sdk/client-s3");

@@ -1,5 +1,5 @@
-const Property = require('./propertyModel');
-const Rental = require('../../rentals/v1/rentalModel');
+const Property = require('./property.model');
+const Rental = require('../../rentals/v1/rental.model');
 
 const deleteProperty = async (req, res) => {
     try {

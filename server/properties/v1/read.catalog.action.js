@@ -1,4 +1,4 @@
-const Property = require('./propertyModel');
+const Property = require('./property.model');
 const { getFilterOptions } = require('./read.filters.action');
 const  getCatalog = async (req, res) => {
     let { page, pageSize, search, sortField, sortOrder, filter } = req.query;

@@ -1,4 +1,4 @@
-const Rental = require('./rentalModel');
+const Rental = require('./rental.model');
 
 const readRental = async (req, res) => {
     try {

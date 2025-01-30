@@ -1,4 +1,4 @@
-const Property = require('./propertyModel');
+const Property = require('./property.model');
 const {convertCurrency} = require('../../Misc/currency');
 const {getExchangeRateCache} = require('../../Misc/rateCache');
 

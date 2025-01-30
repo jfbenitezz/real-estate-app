@@ -1,4 +1,4 @@
-const Image = require('./imageModel');
+const Image = require('./image.model');
 
   const updateText = async (req, res) => {
     try {

@@ -1,4 +1,4 @@
-const User = require('./userModel');
+const User = require('./user.model');
 const {validateUser} = require('../../middleware/validator');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;

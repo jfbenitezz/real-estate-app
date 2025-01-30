@@ -1,6 +1,6 @@
-const User = require('../../users/v1/userModel');
-const Property = require('../../properties/v1/propertyModel');
-const Rental = require('./rentalModel');
+const User = require('../../users/v1/user.model');
+const Property = require('../../properties/v1/property.model');
+const Rental = require('./rental.model');
 
 const createRental = async (req, res) => {
     try {
