@@ -48,15 +48,22 @@ const purchaseRoute = require("./purchases/v1/purchase.routes")
 const imageRoute = require("./images/v1/images.routes")
 const healthRoute = require("./Misc/healthCheck")
 
+const SERVER_VERSION = "";
+app.use(SERVER_VERSION + "/properties", propertiesRoute)
+app.use(SERVER_VERSION + "/users", usersRoute)
+app.use(SERVER_VERSION + "/rentals", rentalsRoute)
+app.use(SERVER_VERSION + "/catalog", catalogRoute)
+app.use(SERVER_VERSION + "/images", imageRoute)
+app.use(SERVER_VERSION + "/auth", authRoute)
+app.use(SERVER_VERSION + "/purchase", purchaseRoute)
+app.use(SERVER_VERSION + "/health", healthRoute)
 
-app.use("/properties", propertiesRoute)
-app.use("/users", usersRoute)
-app.use("/rentals", rentalsRoute)
-app.use("/catalog", catalogRoute)
-app.use("/images", imageRoute)
-app.use("/auth", authRoute)
-app.use("/purchase", purchaseRoute)
-app.use("/health", healthRoute)
+function routeNotFound(req, res) {
+  res.status(404).json({
+    error: "Route not found"  
+  });
+}
+app.use(routeNotFound);
 
 env = process.env.NODE_ENV || 'development';
 app.use((err, req, res, next) => {
