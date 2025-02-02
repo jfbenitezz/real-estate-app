@@ -5,3 +5,4 @@ Misc/admin.js
 Misc/fake.js
 nodemon.json
 config/Atlas.js
+logs/

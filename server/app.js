@@ -30,6 +30,9 @@ app.disable('x-powered-by')
 const cookieParser = require('cookie-parser')
 app.use(cookieParser())
 
+const {logMiddleware} = require('./middleware/log.middleware');
+app.use(logMiddleware);
+
 const cors = require('cors');
 const corsOptions = {
   origin: 'http://localhost:3000', // Allow requests only from this origin
