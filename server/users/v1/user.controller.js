@@ -28,7 +28,7 @@ const updateUserController = async (req, res) => {
     try {
         const id = req.params.id;
         const updateFields = req.body;
-        const user = await updateUser(id, updateFields, req.userId);
+        const user = await updateUser(id, updateFields, req.userId, req.userRole);
         res.status(200).json(user);
     } catch (error) {
         console.error(`Error updating user: ${error.message}`);
@@ -39,7 +39,7 @@ const updateUserController = async (req, res) => {
 const deleteUserController = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await deleteUser(id, req.userId);
+        const user = await deleteUser(id, req.userId, req.userRole);
         res.status(200).json(user);
     } catch (error) {
         console.error(`Error deleting user: ${error.message}`);

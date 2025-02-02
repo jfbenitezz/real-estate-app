@@ -1,6 +1,6 @@
 const Property = require('./property.model');
 
-const updateProperty = async (id, updateFields, userId) => {
+const updateProperty = async (id, updateFields, userId, role) => {
     try {
       let property = await Property.findById(id);
   
@@ -9,7 +9,7 @@ const updateProperty = async (id, updateFields, userId) => {
       }
 
       // Check if the user is the owner of the property
-      if (property.owner.toString() !== userId) {
+      if (property.owner.toString() !== userId && role !== 'admin') {
         throw new Error("Access denied. You are not the owner of this property.");
       }
   

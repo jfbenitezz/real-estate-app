@@ -45,7 +45,7 @@ const updatePropertyController = async (req, res) => {
             return;
         }
 
-        const properties = await updateProperty(id ,req.body, req.userId);
+        const properties = await updateProperty(id ,req.body, req.userId, req.userRole);
         res.status(200);
         res.json(properties);
     } catch (error) {
@@ -61,7 +61,7 @@ const deletePropertyController = async (req, res) => {
         return;
       }
   
-      await deleteProperty(id, req.userId);
+      await deleteProperty(id, req.userId, req.userRole);
       res.status(200);
       res.json(`Property ${id} deleted`);
     } catch (error) {

@@ -1,7 +1,7 @@
 const Property = require('./property.model');
 const Rental = require('../../rentals/v1/rental.model');
 
-const deleteProperty = async ( id, userId ) => {
+const deleteProperty = async ( id, userId, role ) => {
     try {
       let property = await Property.findById(id);
       if (!property) {
@@ -9,7 +9,7 @@ const deleteProperty = async ( id, userId ) => {
       }
   
       // Check if the authenticated user is the owner of the property
-      if (property.owner.toString() !== userId) {
+      if (property.owner.toString() !== userId && role !== 'admin') {
         throw Error("Access denied. You are not the owner of this property.");
       }
   

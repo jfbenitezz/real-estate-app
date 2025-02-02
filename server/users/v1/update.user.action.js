@@ -1,6 +1,6 @@
 const User = require('./user.model');
 
-const updateUser = async (id, updateFields, userId) => {
+const updateUser = async (id, updateFields, userId, role) => {
   try {
     let user = await User.findById(id);
 
@@ -8,10 +8,10 @@ const updateUser = async (id, updateFields, userId) => {
       throw new Error("User not found");
     }
 
-    if (user._id.toString() !== userId) {
+    if (user._id.toString() !== userId, role !== 'admin') {
       throw new Error("Access denied. You are not authorized to update this user.");
     }
-
+    updateFields.role = undefined;
     // Update specific fields
     for (let field in updateFields) {
       if (updateFields.hasOwnProperty(field)) {

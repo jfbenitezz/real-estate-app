@@ -2,6 +2,7 @@ const User = require('./user.model');
 const {validateUser} = require('../../middleware/validator');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const { VALID_ROLES } = require('./user.constants');
 
 const createUser = async (userData) => {
     const { error } = validateUser(userData);
@@ -9,9 +10,10 @@ const createUser = async (userData) => {
       throw new Error(error.details[0].message);
     }
     
-    if (userData.isAdmin !== undefined) {
-      throw new Error('Setting isAdmin is not allowed.');
-    }
+    if (userData.role && !VALID_ROLES.includes(userData.role)) {
+      throw new Error('Invalid role provided.');
+  }
+    userData.role = userData.role || "client";  
     
     try {
       const newUser = new User(userData);

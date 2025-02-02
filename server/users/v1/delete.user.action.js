@@ -1,14 +1,14 @@
 const User = require('./user.model');
 const Rental = require('../../rentals/v1/rental.model');
 
-const deleteUser = async (id, userId) => {
+const deleteUser = async (id, userId, role) => {
   try {
     let user = await User.findById(id);
     if (!user) {
       throw new Error("User not found");
     }
 
-    if (user._id.toString() !== userId) {
+    if (user._id.toString() !== userId && role !== 'admin') {
       throw new Error("Access denied. You are not authorized to delete this user.");
     }
 
