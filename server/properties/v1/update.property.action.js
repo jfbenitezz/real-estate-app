@@ -1,18 +1,16 @@
 const Property = require('./property.model');
 
-const updateProperty = async (req, res) => {
+const updateProperty = async (id, updateFields, userId) => {
     try {
-      const { id } = req.params; 
-      const updateFields = req.body;
-  
       let property = await Property.findById(id);
   
       if (!property) {
-        return res.status(404).json({ error: "Property not found" });
+        throw new Error("Property not found");
       }
+
       // Check if the user is the owner of the property
-      if (property.owner.toString() !== req.userId) {
-        return res.status(403).json({ error: "Access denied. You are not the owner of this property." });
+      if (property.owner.toString() !== userId) {
+        throw new Error("Access denied. You are not the owner of this property.");
       }
   
       // Update specific fields
@@ -25,10 +23,10 @@ const updateProperty = async (req, res) => {
       property = await property.save();
   
       console.log('Property updated:', property);
-      res.status(200).json(property);
+      return property;
     } catch (error) {
       console.error(`Error updating property: ${error.message}`);
-      res.status(500).json({ error: error.message });
+      throw error;
     }
   };
 

@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {createProperty} = require('./create.property.action.js');
-const {readProperty} = require('./read.property.action.js');
-const {updateProperty} = require('./update.property.action.js');
-const {deleteProperty} = require('./delete.property.action.js');
+const {createPropertyController, readPropertyController,
+     updatePropertyController, deletePropertyController} = require('./properties.controller.js');
 
 const auth = require('../../middleware/authToken.js');
 
-router.post('/', auth.verifyToken,createProperty);
-router.get('/:id',readProperty);
-router.put('/:id', auth.verifyToken,updateProperty); 
-router.delete('/:id', auth.verifyToken,deleteProperty);
+router.post('/', auth.verifyToken, createPropertyController);
+router.get('/:id', readPropertyController);
+router.put('/:id', auth.verifyToken, updatePropertyController); 
+router.delete('/:id', auth.verifyToken, deletePropertyController);
 module.exports = router;
 

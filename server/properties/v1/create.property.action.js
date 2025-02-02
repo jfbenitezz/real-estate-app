@@ -1,18 +1,18 @@
 const Property = require('./property.model');
-const createProperty = async (req, res) => {
-    try {
-      const newProperty = new Property({
-        ...req.body,
-        owner: req.userId
-      });
-  
-      await newProperty.save();
-      console.log('Property created:', newProperty);
-      res.status(201).json(newProperty);
-    } catch (error) {
-      console.error(`Error saving new property: ${error.message}`);
-      res.status(500).json({ error: error.message });
-    }
-  };
+const createProperty = async (propertyData, userId) => {
+  try {
+    const newProperty = new Property({
+      ...propertyData,
+      owner: userId
+    });
 
-  module.exports = {createProperty}
+    await newProperty.save();
+
+    return { status: 201, data: newProperty };
+  } catch (error) {
+    console.error(`Error saving new property: ${error.message}`);
+    return { status: 500, error: error.message };
+  }
+};
+
+module.exports = { createProperty };

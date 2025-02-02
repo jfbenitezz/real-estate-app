@@ -2,16 +2,15 @@ const Property = require('./property.model');
 const {convertCurrency} = require('../../Misc/currency');
 const {getExchangeRateCache} = require('../../Misc/rateCache');
 
-const readProperty = async (req, res) => {
+const readProperty = async (id, targetCurrency) => {
     try {
-        const { id } = req.params;
         const targetProperty = await Property.findById(id);
         if (!targetProperty) {
-            return res.status(404).json({ error: "Property not found" });
+            return { status: 404, error: "Property not found" };
         }
 
         const { amount, currency: baseCurrency } = targetProperty.price;
-        const targetCurrency = req.query.targetCurrency || baseCurrency;
+        targetCurrency = targetCurrency || baseCurrency;
 
         // Convert the amount using the convertCurrency function
         const convertedAmount = await convertCurrency(parseFloat(amount), baseCurrency, targetCurrency, getExchangeRateCache());
@@ -25,12 +24,11 @@ const readProperty = async (req, res) => {
             }
         };
 
-        console.log('Property found:', response);
-        res.status(200).json(response);
+        return { status: 200, data: response };
 
     } catch (error) {
         console.error(`Error reading property: ${error.message}`);
-        res.status(500).json({ error: error.message });
+        return { status: 500, error: error.message };
     }
 };
 

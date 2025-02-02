@@ -1,18 +1,15 @@
 const User = require('./user.model');
 
-const updateUser = async (req, res) => {
+const updateUser = async (id, updateFields, userId) => {
   try {
-    const { id } = req.params; 
-    const updateFields = req.body;
-
     let user = await User.findById(id);
 
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      throw new Error("User not found");
     }
 
-    if (user._id.toString() !== req.userId) {
-      return res.status(403).json({ error: "Access denied. You are not authorized to update this user." });
+    if (user._id.toString() !== userId) {
+      throw new Error("Access denied. You are not authorized to update this user.");
     }
 
     // Update specific fields
@@ -25,10 +22,10 @@ const updateUser = async (req, res) => {
     user = await user.save();
 
     console.log('User updated:', user);
-    res.status(200).json(user);
+    return user;
   } catch (error) {
     console.error(`Error updating user: ${error.message}`);
-    res.status(500).json({ error: error.message });
+    throw error;
   }
 };
 

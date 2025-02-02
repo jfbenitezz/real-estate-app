@@ -1,16 +1,15 @@
 const User = require('./user.model');
 const Rental = require('../../rentals/v1/rental.model');
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (id, userId) => {
   try {
-    const { id } = req.params;
     let user = await User.findById(id);
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      throw new Error("User not found");
     }
 
-    if (user._id.toString() !== req.userId) {
-      return res.status(403).json({ error: "Access denied. You are not authorized to delete this user." });
+    if (user._id.toString() !== userId) {
+      throw new Error("Access denied. You are not authorized to delete this user.");
     }
 
     // Find rentals associated with the user
@@ -19,16 +18,16 @@ const deleteUser = async (req, res) => {
     // Check if any rental has an 'Active' status
     const hasActiveRentals = rentals.some(rental => rental.status === 'Active');
     if (hasActiveRentals) {
-      return res.status(400).json({ error: "Cannot delete user with active rentals" });
+      throw new Error("Cannot delete user with active rentals");
     }
 
     // Delete the user
     const deletedUser = await User.findByIdAndDelete(id);
     console.log('User deleted:', deletedUser);
-    res.status(200).json(deletedUser);
+    return { status: 200, data: deletedUser };
   } catch (error) {
     console.error(`Error deleting user: ${error.message}`);
-    res.status(500).json({ error: error.message });
+    throw new Error(error.message);
   }
 };
 
