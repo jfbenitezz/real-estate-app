@@ -5,7 +5,7 @@ const {
   getHubSpotToken, 
   refreshAccessToken, 
   getContact 
-} = require('./hubspotAuth');
+} = require('./hubspotAuth.controller');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const REDIRECT_URI = "http://localhost:5000/hubspot/callback";
@@ -50,6 +50,7 @@ router.get('/callback', async (req, res) => {
   }
 });
 
+// 🛠 Step 3: Refresh Token if expired
 router.get('/refresh-token/:userId', async (req, res) => {
   const { userId } = req.params;
   try {
@@ -57,24 +58,6 @@ router.get('/refresh-token/:userId', async (req, res) => {
     res.send(`Token refreshed for user ${userId}`);
   } catch (err) {
     res.status(500).send(`Error refreshing token: ${err.message}`);
-  }
-});
-
-// 🛠 Get a Contact from HubSpot
-router.get('/contact/:userId', async (req, res) => {
-  const { userId } = req.params;
-
-  try {
-    const accessToken = await getHubSpotToken(userId);
-    if (!accessToken) {
-      return res.status(401).send('No valid token found for user.');
-    }
-
-    const result = await getContact(accessToken);
-    res.json(result);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error retrieving contact');
   }
 });
 

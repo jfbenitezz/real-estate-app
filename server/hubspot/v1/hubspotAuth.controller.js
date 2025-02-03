@@ -85,18 +85,4 @@ const refreshAccessToken = async (userId) => {
   }
 };
 
-const getContact = async (accessToken, count = 10) => { 
-  try {
-    const result = await request.get(`https://api.hubapi.com/contacts/v1/lists/all/contacts/all?count=${count}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      }
-    });
-    return JSON.parse(result).contacts;
-  } catch (e) {
-    throw new Error('Error retrieving contact');
-  }
-};
-
-module.exports = { exchangeForTokens, getHubSpotToken, refreshAccessToken, getContact };
+module.exports = { exchangeForTokens, getHubSpotToken, refreshAccessToken };
