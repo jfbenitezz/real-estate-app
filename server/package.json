@@ -28,6 +28,7 @@
     "node-cron": "^3.0.3",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "request-promise-native": "^1.0.9",
     "sharp": "^0.33.4",
     "uuid": "^9.0.1",
     "winston": "^3.17.0",
@@ -35,7 +36,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "axios": "^1.6.8",
+    "axios": "^1.7.9",
     "nodemon": "^3.1.9"
   }
 }

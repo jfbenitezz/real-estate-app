@@ -53,6 +53,7 @@ const rentalsRoute = require("./rentals/v1/rental.routes")
 const purchaseRoute = require("./purchases/v1/purchase.routes")
 const imageRoute = require("./images/v1/images.routes")
 const healthRoute = require("./Misc/healthCheck")
+const hubspotRoute = require("./hubspot/v1/hubspot.routes")
 
 const SERVER_VERSION = "";
 app.use(SERVER_VERSION + "/properties", propertiesRoute)
@@ -63,6 +64,7 @@ app.use(SERVER_VERSION + "/images", imageRoute)
 app.use(SERVER_VERSION + "/auth", authRoute)
 app.use(SERVER_VERSION + "/purchase", purchaseRoute)
 app.use(SERVER_VERSION + "/health", healthRoute)
+app.use(SERVER_VERSION + "/hubspot", hubspotRoute)
 
 function routeNotFound(req, res) {
   res.status(404).json({
