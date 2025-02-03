@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const {getHubSpotToken} = require('./hubspotAuth.controller');
-const {getContact} = require('./hubspotAPI.controller');
+const {getContact, syncUserToHubSpot, updateUserInHubSpot} = require('./hubspotAPI.controller');
 
 // 🛠 Get a Contact from HubSpot
-router.get('/contact/:userId', async (req, res) => {
-    const { userId } = req.params;
+router.get('/contact/', async (req, res) => {
+    const { userId } = req.query;
+    const {contactID} = req.query;
   
     try {
       const accessToken = await getHubSpotToken(userId);
@@ -13,7 +14,43 @@ router.get('/contact/:userId', async (req, res) => {
         return res.status(401).send('No valid token found for user.');
       }
   
-      const result = await getContact(accessToken);
+      const result = await getContact(accessToken, contactID);
+      res.json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error getting contact');
+    }
+  });
+
+  router.post('/syncToHubspot/', async (req, res) => {
+    const { userId } = req.query;
+    const {dbcontactID} = req.query;
+  
+    try {
+      const accessToken = await getHubSpotToken(userId);
+      if (!accessToken) {
+        return res.status(401).send('No valid token found for user.');
+      }
+  
+      const result = await syncUserToHubSpot(accessToken, dbcontactID);
+      res.json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error getting contact');
+    }
+  });
+
+  router.patch('/updateHubspot/', async (req, res) => {
+    const { userId } = req.query;
+    const {dbcontactID} = req.query;
+  
+    try {
+      const accessToken = await getHubSpotToken(userId);
+      if (!accessToken) {
+        return res.status(401).send('No valid token found for user.');
+      }
+  
+      const result = await updateUserInHubSpot(accessToken, dbcontactID, req.body);
       res.json(result);
     } catch (err) {
       console.error(err);

@@ -3,6 +3,7 @@ const { VALID_ROLES } = require('./user.constants');
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true},
   email: { type: String, required: true, unique: true},
+  contactInfo: String, 
   password: { 
     type: String, 
     required: function () { return !this.googleId; }  // Required only if googleId is not present
@@ -12,6 +13,7 @@ const userSchema = new mongoose.Schema({
   profilePictures: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
   role: { type: String, enum: VALID_ROLES, default: "client" },
   googleId: { type: String , required: false},
+  hubSpotId: { type: String },
   refreshToken: { type: String }
 }, {timestamps: true});
 

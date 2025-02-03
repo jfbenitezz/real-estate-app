@@ -2,7 +2,7 @@ const User = require('./user.model');
 
 const readUser = async (id) => {
     try {
-      const targetUser = await User.findById(id).select('-password -isAdmin -refreshToken');
+      const targetUser = await User.findById(id).select('-password -role -refreshToken -googleId '); 
       if (!targetUser) {
         throw new Error("User not found");
       }
