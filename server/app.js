@@ -42,6 +42,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+const passport = require('./config/authStrategy');
+app.use(passport.initialize());
+
 const usersRoute = require("./users/v1/user.routes")
 const authRoute = require("./auth/v1/auth.routes")
 const propertiesRoute = require("./properties/v1/properties.routes")
