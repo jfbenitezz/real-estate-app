@@ -1,4 +1,5 @@
 const request = require('request-promise-native');
+const {readProperty} = require('../../properties/v1/read.property.action');
 const {readUser} = require('../../users/v1/read.user.action');
 const User = require('../../users/v1/user.model');
 const HUBSPOT_BASE_URL = 'https://api.hubapi.com';
@@ -104,5 +105,88 @@ async function syncUserToHubSpot (access_token, userId) {
     }
 }
 
+const createDeal = async (access_token, userId, propertyId) => { 
+  try {
+    // Fetch user details
+    const user = await readUser(userId);
 
-  module.exports = { getContact, syncUserToHubSpot, updateUserInHubSpot };
+    // Fetch property details, including the owner
+    const { status, data: propertyData } = await readProperty(propertyId);
+
+    // Check if owner's HubSpot ID exists
+    let propertyOwnerhubSpotId = null;
+    let propertyOwner = null; 
+    let propertyOwnerName = null;
+    
+    if (propertyData.owner) {
+      propertyOwner = await readUser(propertyData.owner);
+      
+      if (propertyOwner) { // Ensure the user was found
+        propertyOwnerhubSpotId = propertyOwner.hubSpotId || null;
+        propertyOwnerName = propertyOwner.username || null;
+      }
+    }
+    
+    
+    if (!propertyOwnerhubSpotId) {
+      throw new Error('Property owner does not have a HubSpot ID');
+    }
+
+    // Construct deal data for HubSpot API
+    const dealRequest = {
+      associations: {
+        associatedCompanyIds:'29491125047', // Set  associated company ID
+        associatedVids: [user?.hubSpotId], 
+      },
+      properties: [
+        {
+          value: `${propertyData?.title} Deal`, // Dynamically use property title as deal name
+          name: 'dealname'
+        },
+        {
+          value: 'appointmentscheduled', 
+          name: 'dealstage'
+        },
+        {
+          value: 'default', 
+          name: 'pipeline'
+        },
+        {
+          value: (propertyData?.price?.amount || 0).toString(), 
+          name: 'amount'
+        },
+        {
+          value: 'newbusiness',
+          name: 'dealtype'
+        },
+        {
+          value: propertyData?._id.toString(), 
+          name: 'property_id' 
+        },
+        {
+          value: propertyOwnerName, 
+          name: 'property_owner_name' 
+        }
+      ]
+    };
+    console.log(dealRequest);
+
+    // Make API request to HubSpot to create the deal
+    const response = await axios.post(
+      'https://api.hubapi.com/deals/v1/deal',
+      dealRequest,
+      {
+        headers: {
+          'Authorization': `Bearer ${access_token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    
+    console.log('Deal created successfully:', response.data);
+  } catch (error) {
+    console.error('Error creating deal:', error.message);
+  }
+};
+
+ module.exports = { getContact, syncUserToHubSpot, updateUserInHubSpot, createDeal };

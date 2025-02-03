@@ -17,12 +17,15 @@ const SCOPES = encodeURIComponent([
     'crm.objects.deals.write',
     'crm.schemas.deals.read',
     'crm.schemas.deals.write',
+    'crm.objects.leads.read' ,
+    'crm.objects.leads.write', 
     'oauth'
   ].join(' '));
 
 // 🛠 Step 1: Redirect User to HubSpot OAuth
 router.get('/install', (req, res) => {
   const authUrl = `https://app.hubspot.com/oauth/authorize?client_id=${CLIENT_ID}&scope=${SCOPES}&redirect_uri=${REDIRECT_URI}`;
+  console.log(authUrl);
   res.redirect(authUrl);
 });
 
