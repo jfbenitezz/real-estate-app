@@ -11,8 +11,10 @@ const userSchema = new mongoose.Schema({
   contactInfo: String,
   profilePictures: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
   role: { type: String, enum: VALID_ROLES, default: "client" },
+  refreshToken: { type: String },
   googleId: { type: String , required: false},
-  refreshToken: { type: String }
+  googleAccessToken: { type: String, required: false },
+  googleRefreshToken: { type: String, required: false },
 }, {timestamps: true});
 
 const User = mongoose.model('User', userSchema);

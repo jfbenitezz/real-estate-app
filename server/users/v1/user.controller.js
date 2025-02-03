@@ -2,7 +2,7 @@ const {createUser} = require('./create.user.action.js');
 const {readUser} = require('./read.user.action.js');
 const {updateUser} = require('./update.user.action.js');
 const {deleteUser} = require('./delete.user.action.js');
-
+const {createEvent} = require('./create.meeting.action.js');
 const createUserController = async (req, res) => {
     try {
         const user = await createUser(req.body);
@@ -47,4 +47,14 @@ const deleteUserController = async (req, res) => {
     }
 };
 
-module.exports = { createUserController, readUserController, updateUserController, deleteUserController };
+
+const createEventController = async (req, res) => {
+    try {
+        const event = await createEvent(req.userId, req.body);
+        res.status(201).json(event);
+    } catch (error) {
+        console.error(`Error creating event: ${error.message}`);
+        res.status(500).json({ error: error.message });
+    }
+}
+module.exports = { createUserController, readUserController, updateUserController, deleteUserController, createEventController };

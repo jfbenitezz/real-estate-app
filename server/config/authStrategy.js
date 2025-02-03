@@ -5,7 +5,9 @@ const User = require('../users/v1/user.model');
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: '/auth/google/callback' 
+  callbackURL: '/auth/google/callback',
+  scope: ['profile', 'email', 
+    'https://www.googleapis.com/auth/calendar', 'https://www.googleapis.com/auth/calendar.events']
 },
 async (accessToken, refreshToken, profile, done) => {
   try {
@@ -16,7 +18,9 @@ async (accessToken, refreshToken, profile, done) => {
         googleId: profile.id,
         email: profile.emails[0].value,
         username: profile.displayName,
-        role: 'client' // Default role
+        role: 'client', // Default role
+        googleAccessToken: accessToken,
+        googleRefreshToken: refreshToken
       });
 
       await user.save();
