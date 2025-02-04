@@ -25,7 +25,7 @@ const refreshToken = async (req, res) => {
             }
         });
     } catch (error) {
-        return res.status(403).send({ error: 'Error refreshing access token' });
+        return res.status(500).send({ error: 'Error refreshing access token' });
     }
 };
 

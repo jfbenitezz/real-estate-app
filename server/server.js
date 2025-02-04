@@ -9,5 +9,7 @@ const init = async () => {
     console.log(`Server listening at http://localhost:${port}`)})
   }
   
+  if (process.env.NODE_ENV !== 'test') {
+    init();
+  }
   
-  init();

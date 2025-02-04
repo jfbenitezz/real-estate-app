@@ -7,8 +7,7 @@ const updateUser = async (id, updateFields, userId, role) => {
     if (!user) {
       throw new Error("User not found");
     }
-
-    if (user._id.toString() !== userId, role !== 'admin') {
+    if (user._id.toString() !== userId && role !== 'admin') {
       throw new Error("Access denied. You are not authorized to update this user.");
     }
     updateFields.role = undefined;

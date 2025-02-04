@@ -6,3 +6,5 @@ Misc/fake.js
 nodemon.json
 config/Atlas.js
 logs/
+tests/
+*.test.js

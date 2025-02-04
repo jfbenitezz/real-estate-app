@@ -40,7 +40,7 @@ const deleteUserController = async (req, res) => {
     try {
         const id = req.params.id;
         const user = await deleteUser(id, req.userId, req.userRole);
-        res.status(200).json(user);
+        res.status(200).json(`User ${id} deleted`);
     } catch (error) {
         console.error(`Error deleting user: ${error.message}`);
         res.status(500).json({ error: error.message });

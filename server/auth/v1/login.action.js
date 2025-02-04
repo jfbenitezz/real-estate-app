@@ -7,7 +7,7 @@ const { generateAccessToken, generateRefreshToken } = require('./createTokens.ac
 const loginUser = async (req, res) => {
     const { error } = validateLogin(req.body);
     if (error) {
-        return res.status(400).json({ error: error.details[0].message });
+        return res.status(400).json({ error: `Invalid credentials: ` + error.details[0].message });
     }   
 
     const user = await User.findOne({ email: req.body.email });
